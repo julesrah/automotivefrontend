@@ -12,9 +12,9 @@ export default function Start({ navigation }) {
   return (
     <Background>
       <Logo />
-      <Header>Login Template</Header>
+      <Header>Welcome!</Header>
       <Paragraph>
-        The easiest way to start with your amazing application.
+        The easiest way to monitor your tools.
       </Paragraph>
       <Button
         mode="outlined"

@@ -5,7 +5,7 @@ import { theme } from '../core/theme'
 export default function Background({ children }) {
   return (
     <ImageBackground
-    source={require('../assets/images2/background_dot.png')}
+    source={require('../assets/images2/bg.png')}
     resizeMode="repeat"
       style={styles.background}
     >

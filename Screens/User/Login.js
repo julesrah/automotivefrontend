@@ -35,7 +35,7 @@ const Login = (props) => {
         };
 
         if (email === "" || password === "") {
-            setError("Please fill in your credentials");
+            setError("Please fill out your credentials");
         } else {
             loginUser(user, context.dispatch);
             console.log("error")
@@ -60,7 +60,7 @@ const Login = (props) => {
         <Background>
             <BackButton goBack={navigation.goBack} />
             <Logo />
-            <Header>Welcome back.</Header>
+            <Header>Welcome back!</Header>
             <TextInput
                 placeholder={"Enter email"}
                 name={"email"}
@@ -69,7 +69,7 @@ const Login = (props) => {
                 onChangeText={(text) => setEmail(text.toLowerCase())}
             />
             <TextInput
-                placeholder={"Enter Password"}
+                placeholder={"Enter password"}
                 name={"password"}
                 id={"password"}
                 secureTextEntry={true}

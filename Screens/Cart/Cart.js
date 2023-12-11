@@ -21,6 +21,10 @@ import {
 import { SwipeListView } from 'react-native-swipe-list-view';
 import Icon from "react-native-vector-icons/FontAwesome";
 import EasyButton from '../../Shared/StyledComponents/EasyButtons';
+import { useContext } from 'react';
+import AuthGlobal from '../../Context/Store/AuthGlobal';
+import Toast from 'react-native-toast-message';
+
 
 var { height, width } = Dimensions.get("window");
 
@@ -28,11 +32,27 @@ const Cart = (props) => {
     var total = 0;
     const navigation = useNavigation()
     const cartItems = useSelector(state => state.cartItems)
-    dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const context = useContext(AuthGlobal)
 
-    cartItems.forEach(cart => {
-        return (total += cart.price)
-    });
+    const checkout =  () => {
+        if (context.stateUser.isAuthenticated){
+            navigation.navigate('Checkout') 
+        }
+        else {
+            navigation.navigate("User",{ screen: 'Login' });
+            Toast.show({
+                topOffset: 60,
+                type: "error",
+                text1: "Please Login to Checkout",
+                text2: ""
+            });
+        }
+    }
+
+    // cartItems.forEach(cart => {
+    //     return (total += cart.price)
+    // });
 
     const renderItem = ({ item, index }) =>
         <TouchableHighlight onPress={() => console.log('You touched me')} _dark={{
@@ -58,7 +78,7 @@ const Cart = (props) => {
                     <Text fontSize="xs" color="coolGray.800" _dark={{
                         color: 'warmGray.50'
                     }} alignSelf="flex-start">
-                        $ {item.price}
+                        {/* $ {item.price} */}
                     </Text>
                 </HStack>
             </Box>
@@ -107,7 +127,7 @@ const Cart = (props) => {
             <VStack style={styles.bottomContainer} w='100%' justifyContent='space-between'
             >
                 <HStack justifyContent="space-between">
-                    <Text style={styles.price}>$ {total.toFixed(2)}</Text>
+                    {/* <Text style={styles.price}>$ {total.toFixed(2)}</Text> */}
                 </HStack>
                 <HStack justifyContent="space-between">
                     <EasyButton
@@ -123,11 +143,11 @@ const Cart = (props) => {
                     <EasyButton
                         secondary
                         medium 
-                        onPress={() => navigation.navigate('Checkout')}>
-                        <Text style={{ color: 'white' }}>Checkout</Text>
+                        onPress={() => checkout()}>
+                        <Text style={{ color: 'white' }}>Borrow</Text>
                     </EasyButton>
                 </HStack>
-            </VStack >
+            </VStack>
         </>
 
     );

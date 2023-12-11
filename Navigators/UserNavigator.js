@@ -7,7 +7,7 @@ import Register from '../Screens/User/Register';
 import UserProfile from '../Screens/User/UserProfile';
 import UserUpdate from '../Screens/User/UserUpdate';
 import ForgetPassword from '../Screens/User/ForgetPassword';
-
+import Borrow from '../Screens/User/Borrow';
 const Stack = createStackNavigator();
 
 const UserNavigator = (props) => {
@@ -19,6 +19,7 @@ const UserNavigator = (props) => {
             <Stack.Screen name="UserProfile" options={{headerShown: false}} component={UserProfile}></Stack.Screen>
             <Stack.Screen name="UserUpdate" options={{headerShown: false}} component={UserUpdate}></Stack.Screen>
             <Stack.Screen name="ForgetPassword" options={{headerShown: false}} component={ForgetPassword}></Stack.Screen>
+            <Stack.Screen name="Borrow" options={{headerShown: false}} component={Borrow}></Stack.Screen>
         </Stack.Navigator>
     )
 }

@@ -6,14 +6,15 @@ import FormContainer from '../../../Shared/Form/FormContainer'
 import Input from '../../../Shared/Form/Input'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
 import AuthGlobal from '../../../Context/Store/AuthGlobal'
 import axios from 'axios'
 import baseURL from '../../../assets/common/baseUrl'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as actions from '../../../Redux/Actions/cartActions';
-import Toast from 'react-native-toast-message'
+import Toast from 'react-native-toast-message';
+
 
 const Checkout = (props) => {
     const [borrowItems, setBorrowItems] = useState([])
@@ -21,7 +22,8 @@ const Checkout = (props) => {
     const navigation = useNavigation()
     const cartItems = useSelector(state => state.cartItems)
     const [token, setToken] = useState();
-    const context = useContext(AuthGlobal)
+    const context = useContext(AuthGlobal);
+    const dispatch = useDispatch()
 
     console.log(cartItems, 'items')
 
